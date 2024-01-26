@@ -497,8 +497,15 @@ function getIdentityMatrix(/* n */) {
  *    getIndicesOfOddNumbers([2, 4, 6, 8, 10]) => []
  *    getIndicesOfOddNumbers([11, 22, 33, 44, 55]) => [0, 2, 4]
  */
-function getIndicesOfOddNumbers(/* numbers */) {
-  throw new Error('Not implemented');
+function getIndicesOfOddNumbers(numbers) {
+  const arr = [];
+  numbers.map((item, i) => {
+    if (item % 2 !== 0) {
+      arr.push(i);
+    }
+    return item;
+  });
+  return arr;
 }
 
 /**
@@ -612,8 +619,40 @@ function shiftArray(/* arr, n */) {
  *   sortDigitNamesByNumericOrder([ 'nine','eight','nine','eight' ]) => [ 'eight','eight','nine','nine']
  *   sortDigitNamesByNumericOrder([ 'one','one','one','zero' ]) => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder(/* arr */) {
-  throw new Error('Not implemented');
+function sortDigitNamesByNumericOrder(arr) {
+  const obj = {
+    0: 'zero',
+    1: 'one',
+    2: 'two',
+    3: 'three',
+    4: 'four',
+    5: 'five',
+    6: 'six',
+    7: 'seven',
+    8: 'eight',
+    9: 'nine',
+  };
+  const newArr = [];
+  const result = [];
+  arr.map((item) => {
+    Object.entries(obj).map(([key, value]) => {
+      if ([key, value][1] === item) {
+        newArr.push(Number(key));
+      }
+      return [key, value];
+    });
+    return item;
+  });
+  newArr.sort().map((item2) => {
+    Object.entries(obj).map(([key, value]) => {
+      if ([key, value][0] === String(item2)) {
+        result.push([key, value][1]);
+      }
+      return [key, value];
+    });
+    return item2;
+  });
+  return result;
 }
 
 /**
