@@ -413,8 +413,16 @@ function calculateBalance(arr) {
  *    createChunks(['a', 'b', 'c', 'd', 'e'], 2) => [['a', 'b'], ['c', 'd'], ['e']]
  *    createChunks([10, 20, 30, 40, 50], 1) => [[10], [20], [30], [40], [50]]
  */
-function createChunks(/* arr, chunkSize */) {
-  throw new Error('Not implemented');
+function createChunks(arr, chunkSize) {
+  let result = [];
+  const chunk = arr;
+  if (arr.length <= chunkSize && arr.length > 0) {
+    result.push(arr);
+  } else {
+    const createChunk = chunk.splice(0, chunkSize);
+    result = [createChunk, ...createChunks(chunk, chunkSize)];
+  }
+  return result;
 }
 
 /**
@@ -539,8 +547,11 @@ function getIndicesOfOddNumbers(numbers) {
  *    getHexRGBValues([ 0, 255, 16777215]) => [ '#000000', '#0000FF', '#FFFFFF' ]
  *    getHexRGBValues([]) => []
  */
-function getHexRGBValues(/* arr */) {
-  throw new Error('Not implemented');
+function getHexRGBValues(arr) {
+  const result = '00000';
+  return arr.map((item) => {
+    return `#${result.concat(item.toString(16).toUpperCase()).slice(-6)}`;
+  });
 }
 
 /**
@@ -573,8 +584,12 @@ function getMaxItems(/* arr, n */) {
  *    findCommonElements(['a', 'b', 'c'], ['b', 'c', 'd']) => [ 'b', 'c' ]
  *    findCommonElements([1, 2, 3], ['a', 'b', 'c']) => []
  */
-function findCommonElements(/* arr1, arr2 */) {
-  throw new Error('Not implemented');
+function findCommonElements(arr1, arr2) {
+  const newArr = new Set(arr2);
+  const result = arr1.filter((item) => {
+    return newArr.has(item);
+  });
+  return result;
 }
 
 /**
